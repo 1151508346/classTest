@@ -1,0 +1,83 @@
+create table student
+(
+	Sno char(6) primary key,
+ 	Sname char(6) not null,
+	Sage int not null,
+	Ssex char(2) check (Ssex='ÄĞ' or Ssex='Å®'),
+	Sdept char(2)  
+)
+
+insert into student
+values ('98010','ÕÔÇà½­',18,'ÄĞ','CS');
+insert into student
+values ('98011','ÕÅÀöÆ¼',19,'Å®','CH');
+insert into student
+values ('98012','³Â¾°»¶',20,'ÄĞ','IS');
+insert into student
+values ('98013','³ÂæÃæÃ',16,'Å®','PH');
+insert into student
+values ('98014' , 'Àî¾ü',16,'Å®','CS');
+
+create table SC
+(
+	Sno char(6),
+	Cno char(1),
+	Grade int check(Grade >0 and Grade <100)
+	foreign key (Sno) references student(Sno),
+)
+
+
+
+insert into SC
+values('98012','1',84);
+
+insert into SC
+values('98012','3',null);
+
+insert into SC
+values('98012','4',67);
+
+insert into SC
+values('98012','5',81);
+
+update  student
+set Sname='Ç®ºá'
+where Sno='98012'
+
+delete from SC
+ where Sno=(select Sno from student
+where Sname='Ç®ºá' and SC.Sno=student.Sno
+)
+
+select * from TC
+delete from TC
+where  Sname=(select  Sname  from TC
+	where Sname like 'ÕÅ%'
+)
+select * from TC
+
+
+
+
+
+create table SC_back
+(
+	Sno char(6) primary key,
+ 	Sname char(6) not null,
+	Sage int not null,
+	Ssex char(2) check (Ssex='ÄĞ' or Ssex='Å®'),
+	Sdept char(2)  
+)
+
+
+insert into SC_back
+values ('98010','ÕÔÇà½­',18,'ÄĞ','CS');
+insert into SC_back
+values ('98011','ÕÅÀöÆ¼',19,'Å®','CH');
+insert into SC_back
+values ('98012','³Â¾°»¶',20,'ÄĞ','IS');
+insert into SC_back
+values ('98013','³ÂæÃæÃ',16,'Å®','PH');
+insert into SC_back
+values ('98014' , 'Àî¾ü',16,'Å®','CS');
+
